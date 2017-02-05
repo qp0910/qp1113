@@ -1,171 +1,535 @@
-<!DOCTYPE HTML>
-<html class="no-js">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-    <title>Document</title>
-    <meta name="description" content="Lithium Description" />
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人简历</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <link rel="shortcut icon" href="./images/favicon.ico"/>
 
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <!--lib css-->
+    <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.css"/>
+    <link rel="stylesheet" href="css/jquery.fullPage.css"/>
+    <link rel="stylesheet" href="css/animate.css">
 
-    <link href="css/plugins.css" media="screen" rel="stylesheet" type="text/css" />
-    <link href="css/application.css" media="screen" rel="stylesheet" type="text/css" />
-    <script src="js/libs/modernizr-2.6.2.min.js"></script>
-  </head>
+    <!--personal css-->
+    <link rel="stylesheet" href="css/index.css"/>
+    <style>  
+        body,ul,li{
+            margin:0;
+            padding:0;
+            list-style:none;
+        }
+        *{
+            box-sizing:border-box;
+        }
+        #header ul{
+            width:60%;
+            height:60px;
+            position: fixed;
+            right: 0;
+        }
+        #header ul>li{
+            width:20%;
+            height:100%;
+            border-right:1px solid #fff;
+            background:black;
+            float:left;
+            position:relative;
+            transition:all 0.5s ease;
+        }
+        #header ul>li:last-child{
+            border-right:none;
+        }
+        #header ul>li>.sidedown>a{
+            cursor:pointer;
+            display:block;
+            position:absolute;
+            background: black;
+            top:0px;
+            left:0px;
+            width: 100%;
+            height: 60px;
+            text-align: center;
+            color: white;
+            line-height: 60px;
+            font-weight: bolder;
+            font-family: "苹方";
+        }
+        #header ul>li>.sidedown{
+            width:100%;
+            height:60px;
+            position: relative;
+            transition: all 0.3s ease;
+                perspective:0px;
+                -moz-perspective:0px;
+                -webkit-perspective:0px;
+                transform-style:preserve-3d;
+               -webkit-transform-style:preserve-3d;
+                -moz-transform-style:preserve-3d;
+                perspective-origin:left 100%;
+                -webkit-perspective-origin:left 100%;
+                -moz-perspective-origin: left 100%;
+        }
+        #header ul li a.s2{
+            transform:translatez(30px);
+            -webkit-transform:translatez(30px);
+            -moz-transform:translatez(30px);
+            font-size: 20px;
+             text-decoration: none;
+        }
+        #header ul li a.s1{
+            background:#666666;
+            transform:rotateX(90deg) translatez(30px);
+            -webkit-transform:rotateX(90deg) translatez(30px);
+            -moz-transform:rotateX(90deg) translatez(30px);
+            font-size: 20px;
+            text-decoration: none;
+        }
+        #header ul li:hover .sidedown{
+            transform:rotateX(-90deg);
+            -webkit-transform:rotateX(-90deg);
+            -moz-transform:rotateX(-90deg);
+        }
 
+        .section{
+            position: relative;
+            overflow: hidden;
+        }
+        .item-1{
+           background: url(images/bg.jpg) no-repeat;
+           background-size: cover;
+        }
+        .item-2{
+            background: url(images/3.jpg) no-repeat;
+           background-size: cover;
+        }
+        .item-4 {
+            background: url(images/bg1.jpg) no-repeat;
+            background-size: cover;
+        }
+        .item-5{
+            background: url(images/pure.jpg) no-repeat;
+           background-size: cover;
+        }
+        #header{
+            width: 100%;
+            height: 60px;
+            background: rgba(0,0,0,0.5);
+            position: fixed;
+            left: 0;
+            top:0;
+            z-index: 999;
+        }
+        .slide{
+            text-align: center;
+            position: relative;
+        }
+        .slide .view{
+            width: 80%;
+            height: 50%;
+            position: absolute;
+            left: 0;right: 0;
+            top:0;bottom: 0;
+            margin:auto;
+        }
+        .view1{
+            background: blue;
+        }
+        .view2{
+            background: red;
+        }
+        .view3{
+            background: yellow;
+        }
+        .view4{
+            background: orange;
+        }
+        .touxiang{
+            width: 250px;
+            height: 250px;
+            border: 2px solid green;
+            border-radius: 50%;
+            position: absolute;
+            top:-250px;
+            right: 0; left:0;
+            margin:auto;
+            background: url(img/1.jpg) no-repeat ;
+            background-size: cover;
+            transition: all 2s ease;
+        }
+        .active .touxiang{
+            position: absolute;
+            left: 0;right: 0;
+            top:0;bottom: 0;
+            margin:auto;
+        }
+    </style>
+</head>
 <body>
-  
-  <section id="page-container">
+<!--导航栏-->
+<div id="header">
+     <ul>
+         <li data-menuanchor="page1" class="active">
+            <div class="sidedown">
+                <a href="#page1" class="s1">主页</a>
+                <a href="#page1" class="s2">主页</a>
+            </div>
 
+        </li>
+        <li data-menuanchor="page2">
+            <div class="sidedown">
+                <a href="#page2" class="s1">基本资料</a>
+                <a href="#page2" class="s2">基本资料</a>
+            </div>
 
-    <!-- HERO -->
-    <section id="page-hero">
-      <div class="site-inner">
-        <header>
-          <div class="brand-logo">
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="brand-logo" x="0px" y="0px" viewBox="-4 -4 58 58" enable-background="new -4 -4 58 58" xml:space="preserve" class=" iconic-injected-svg inject-me">
-              <path id="circle" d="M0.2,27.2c-0.2-1.9-0.3-3.4,0-5.3c0.1-0.4,0.2-0.8,0.2-1.1C2.2,9,12.2,0.2,24.2,0C32.3-0.1,39,3,44.1,9.4  c3,3.7,4.6,8.1,5.2,12.8c0.1,2.5,0.1,2.5,0,4.7c-0.1,0.5-0.2,0.8-0.2,1.3c-1.8,11.7-11.5,20.6-23.3,20.9c-9.9,0.3-17.4-4-22.5-12.5  C1.5,33.7,0.7,30.5,0.2,27.2z M2.3,24.5C2.1,36,11.4,47.1,24.8,47c13.1,0,22.4-10.6,22.4-22.4c0-11.9-9.4-22.5-22.5-22.5  C11.3,2.1,2.2,13.1,2.3,24.5z"></path>
-              <path id="icon" d="M24.9,45.2c-3.4,0-6.6-2.5-7.7-5.6c-3-8.9-5.9-17.9-8.8-26.9c-0.3-1,0-1.2,0.9-1.2c3.6,0.1,7.4,3.1,8.5,6.7  c2.1,6.6,4.2,13.2,6.3,19.8c0.1,0.3,0.4,0.6,0.5,1c0.1-0.3,0.3-0.6,0.4-0.9c2.1-6.6,4.2-13.2,6.3-19.8c1.1-3.5,4.8-6.5,8.3-6.7  c1.6-0.1,1.7,0,1.2,1.5C38.3,21,35.6,29,33,37c-0.6,2-1.2,3.9-2.7,5.5C28.8,44.2,26.9,45.1,24.9,45.2z"></path>
-              <path id="circle-alt" d="M-3.2,27.6c-0.2-2.2-0.3-3.9,0-6c0.1-0.5,0.2-0.9,0.2-1.3c2-13.4,13.4-23.4,27.1-23.7  C33.3-3.4,41,0.1,46.8,7.4c3.4,4.2,5.2,9.2,5.9,14.6c0.1,2.8,0.1,2.8,0,5.3c-0.1,0.6-0.2,0.9-0.2,1.5c-2,13.3-13.1,23.4-26.5,23.8  C14.7,52.9,6.1,48,0.3,38.3C-1.7,35-2.6,31.4-3.2,27.6z M-0.8,24.6C-1,37.6,9.6,50.3,24.8,50.2c14.9,0,25.5-12.1,25.5-25.5  c0-13.5-10.7-25.6-25.6-25.6C9.4-0.9-0.9,11.6-0.8,24.6z"></path>
-            </svg>
-          </div>
-        </header>
+        </li>
+        <li data-menuanchor="page3">
+            <div class="sidedown">
+                <a href="#page3" class="s1">专业技能</a>
+                <a href="#page3" class="s2">专业技能</a>
+            </div>
 
-        <h1 class="heading h-01">乔鹏</h1>
-        <p class="sub-header copy-02">
-          TEL:15735806619<br>
-          QQ:761089098<br>
-          我很高兴您访问我的个人主页，在这里您可以对我和我的能力进行了解，谢谢。</p>
-        <a href="#" class="arrow-down">
-          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="arrow-down" x="0px" y="0px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve" class=" iconic-injected-svg inject-me">
-            <path id="circle" d="M0.2,27.4c-0.2-1.9-0.3-3.4,0-5.3c0.1-0.4,0.2-0.8,0.2-1.1C2.2,9.1,12.3,0.2,24.3,0c8.2-0.1,14.9,3,20.1,9.4  c3,3.8,4.6,8.2,5.3,12.9c0.1,2.5,0.1,2.5,0,4.7c-0.1,0.5-0.2,0.8-0.2,1.3C47.7,40.2,37.9,49.1,26,49.5c-10,0.3-17.5-4-22.7-12.6  C1.5,34,0.7,30.7,0.2,27.4z M2.3,24.7c-0.2,11.6,9.2,22.7,22.6,22.7c13.2,0,22.6-10.7,22.6-22.6c0-12-9.4-22.7-22.6-22.7  C11.4,2.1,2.2,13.3,2.3,24.7z"></path>
-            <path id="arrow" class="st0" d="M31.8,23.4c-0.2-0.3-0.6-0.3-0.9-0.1l-6,5l-6-5c-0.3-0.2-0.7-0.2-0.9,0.1c-0.2,0.3-0.2,0.7,0.1,0.9l6.5,5.4   c0.1,0.1,0.3,0.1,0.4,0.1c0.1,0,0.3,0,0.4-0.1l6.5-5.4C31.9,24,32,23.6,31.8,23.4z"></path>
-          </svg>
-        </a>
-      </div>
-    </section>
+        </li>
+        <li data-menuanchor="page4">
+          <div class="sidedown">
+                <a href="#page4" class="s1">项目经验</a>
+                <a href="#page4" class="s2">项目经验</a>
+            </div>
 
+        </li>
+        <li data-menuanchor="page5">
+            <div class="sidedown">
+                <a href="#page5" class="s1">自我评价</a>
+                <a href="#page5" class="s2">自我评价</a>
+            </div> 
 
-    <!-- ABOUT -->
-    <section id="page-about" class="section">
-      <div class="site-inner">
-        <p class="copy-01">我是一个前端工程师。我喜欢用代码实现设计师的布局以及丰富的动画效果。在这个领域，我参加了几个大型项目的工作。获得同事以及领导的认可。</p>
-        <p class="copy-01">我喜欢在网站的布局以及特效的实现，并对设计师和后台的工作有一定了解，因为在我看来三者只有步调一致，才会实现出最优秀的网站。同时将继续进一步的研究，以提高自己的技能，不仅仅局限于前端工程师这个定位。</p>
+        </li>
+    </ul>
+</div>
+<div class="guns sky">
+    <div class="clouds_one"></div>
+    <div class="clouds_two"></div>
+    <div class="clouds_three"></div>
+</div>
+<div class="pure">
 
-        <h1 class="heading h-01">我的技能</h1>
-
-        <div class="columns">
-          <aside>
-            <h3 class="heading h-03">H5/CSS3</h3>
-            <p class="copy-02">熟练运用H5/CSS3进行网页的布局，可以运用其某些特性实行简单的动画效果，而不用复杂的JS代码</p>
-          </aside>
-
-          <aside>
-            <h3 class="heading h-03">JS/jQuery</h3>
-            <p class="copy-02">通过两个语言实现网站的动画效果，是网站的效果更丰富，增强用户体验</p>
-          </aside>
-
-          <aside>
-            <h3 class="heading h-03">nodejs/phpcms</h3>
-            <p class="copy-02">熟悉nodejs和phpcms等语言，可以制作动态网页，对于后台有一定了解</p>
-          </aside>
+</div>
+<div id="resume">
+    <div class="section item-1">
+         <div class="touxiang">
+                
         </div>
 
-      </div>
-    </section>
-
-	<!-- <div class="copyrights">Collect from <a href="http://www.cssmoban.com/"  title="网站模板">网站模板</a></div>
-     -->
-    <!-- HERO -->
-    <section id="page-work" class="section">
-      <div class="my-work-container">
-        <div class="site-inner">
-          <h1 class="heading h-01">我的工作</h1>
+        <div class="corner1 corner">
+            <img src="./images/page_home/1.png" alt=""/>
+        </div>
+        <div class="corner2 corner">
+            <img src="./images/page_home/2.png" alt=""/>
+        </div>
+        <div class="corner3 corner">
+            <img src="./images/page_home/3.png" alt=""/>
+        </div>
+        <div class="corner4 corner">
+            <img src="./images/page_home/4.png" alt=""/>
         </div>
 
-        <a href="#" class="mobile-filter-select">Filter</a>
-        <nav id="work-filter">
-          <a href="#" class="filter-link active" data-group="all">所有工作</a>
-          <a href="#" class="filter-link" data-group="landingpage">Landing Page</a>
-          <a href="#" class="filter-link" data-group="webdesign">Web Design</a>
-          <a href="#" class="filter-link" data-group="icondesign">Icon Design</a>
-          <a href="#" class="filter-link" data-group="template">Template</a>
-        </nav>
+    </div>
+    <div class="section item-2">
+        <div class="container">
+            <h class='hidden-xs hidden-sm page2-title'>基本资料</h>
+            <div class="row">
+                <div class=" icon-infomation col-xs-6 col-sm-6 col-md-3">
+                    <img src="./images/page-2/glass.png" alt="">
+                    <h4>基本信息</h4>
+                    <p>
+                        姓名: 乔鹏 男
+                        <br>
+                       年龄: 23岁 籍贯：山西
+                    </p>
+                </div>
+                <div class=" icon-infomation col-xs-6 col-sm-6 col-md-3">
+                    <img src="./images/page-2/hat.png" alt="">
+                    <h4>毕业院校</h4>
+                    <p>
+                        吕梁学院
+                    </p>
 
-        <section id="work-grid" class="site-inner">
+                </div>
+                <div class=" icon-infomation col-xs-6 col-sm-6 col-md-3">
+                    <img src="./images/page-2/book.png" alt="">
+                    <h4>学历和专业</h4>
+                    <p>
+                         本科
+                        <br>
+                        专业技能 编程
+                    </p>
+                </div>
+                <div class=" icon-infomation col-xs-6 col-sm-6 col-md-3">
+                    <img src="./images/page-2/tel.png" alt="">
+                    <h4>联系方式</h4>
+                    <p>
+                        邮箱 qiaopeng@sina.cn
+                        <br>
+                        电话 17634027552
+                    </p>
+                </div>
+            </div>
 
-          <div class="work-item" data-groups='["all", "webdesign"]' data-url="http://dribbble.com">
-            <figure class="image-container"><img src="images/work/web-one.jpg" /></figure>
-            <h2 class="heading h-02">Positionly gain more traffic</h2>
-            <p class="copy-03">Web Design</p>
-          </div>
-
-          <div class="work-item" data-groups='["all", "icondesign"]' data-url="http://dribbble.com">
-            <figure class="image-container"><img src="images/work/icon-one.jpg" /></figure>
-            <h2 class="heading h-02">Flag - User Dashboard</h2>
-            <p class="copy-03">Icon Design</p>
-          </div>
-
-          <div class="work-item" data-groups='["all", "webdesign"]' data-url="http://dribbble.com">
-            <figure class="image-container"><img src="images/work/web-two.jpg" /></figure>
-            <h2 class="heading h-02">Google Maps - developers</h2>
-            <p class="copy-03">Web Design</p>
-          </div>
-
-          <div class="work-item" data-groups='["all", "landingpage"]' data-url="http://dribbble.com">
-            <figure class="image-container"><img src="images/work/landing-one.jpg" /></figure>
-            <h2 class="heading h-02">Djed Landing Page</h2>
-            <p class="copy-03">Landing Page</p>
-          </div>
-
-          <div class="work-item" data-groups='["all", "template"]' data-url="http://dribbble.com">
-            <figure class="image-container"><img src="images/work/template-one.jpg" /></figure>
-            <h2 class="heading h-02">MG3 Website</h2>
-            <p class="copy-03">Template</p>
-          </div>
-
-          <div class="work-item" data-groups='["all", "icondesign"]' data-url="http://dribbble.com">
-            <figure class="image-container"><img src="images/work/icon-two.jpg" /></figure>
-            <h2 class="heading h-02">Mixpanel Career</h2>
-            <p class="copy-03">Icon Design</p>
-          </div>
-
-          <div class="shuffle__sizer"></div>
-        </section>
-
-        <a href="#" class="button main rounded">See My Work</a>
-      </div>
-
-      <div id="work-detail">
-        <span class="close-icon">x</span>
-        <div class="inner site-inner"></div>
-      </div>
-
-    </section>
-
-    <!-- FOOTER -->
-    <section id="page-footer">
-
-      <div class="social-links">
-        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="icon-twitter" x="0px" y="0px" viewBox="0 0 50 50" enable-background="new 0 0 50 50" xml:space="preserve" class=" iconic-injected-svg inject-me"><path d="M41,15.2c-0.7,0.2-1.4,0.3-2.2,0.4c1.5-1,2.5-2.3,3.2-4c-0.7,0.4-1.4,0.7-2.2,1c-0.8,0.3-1.6,0.5-2.4,0.7  c-0.7-0.7-1.5-1.2-2.3-1.6c-0.9-0.4-1.9-0.6-2.9-0.6c-1,0-1.9,0.2-2.8,0.6c-0.9,0.4-1.6,0.9-2.3,1.6c-0.7,0.7-1.2,1.4-1.6,2.3  c-0.4,0.9-0.6,1.9-0.6,2.8c0,0.6,0.1,1.1,0.2,1.6c-3-0.1-5.8-0.8-8.3-2.2c-2.6-1.3-4.7-3.1-6.5-5.4c-0.6,1.2-1,2.4-1,3.7  c0,1.3,0.3,2.4,0.8,3.5c0.6,1,1.4,1.9,2.4,2.5c-0.7,0-1.3-0.1-1.8-0.2c-0.5-0.2-1-0.4-1.5-0.6v0.1c0,1.8,0.5,3.3,1.6,4.6  c1.1,1.3,2.5,2.1,4.2,2.5c-0.3,0.1-0.6,0.1-0.9,0.2c-0.3,0-0.6,0.1-1,0.1c-0.4,0-0.8-0.1-1.3-0.2c0.4,1.4,1.3,2.6,2.5,3.6  c1.2,0.9,2.6,1.4,4.2,1.5c-2.5,2-5.5,3.1-8.9,3.1c-0.3,0-0.6,0-0.9,0c-0.3,0-0.6,0-0.8-0.1c1.6,1,3.4,1.9,5.2,2.4  c1.9,0.6,3.8,0.9,5.9,0.9c3.3,0,6.2-0.6,8.8-1.9c2.5-1.2,4.7-2.8,6.4-4.8c1.7-2,3.1-4.2,4-6.7c0.9-2.5,1.4-4.9,1.4-7.3v-0.8  c1.4-1.1,2.6-2.4,3.6-3.8C42.3,14.8,41.7,15,41,15.2z"></path></svg></a>
-        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="icon-dribbble" x="0px" y="0px" viewBox="0 0 50 50" enable-background="new 0 0 50 50" xml:space="preserve" class=" iconic-injected-svg inject-me"><path d="M34,27.2c0.9,0,1.7,0.1,2.6,0.2c0.9,0.1,1.8,0.3,2.7,0.5c-0.4,2.1-1.2,4-2.4,5.6s-2.7,3-4.5,4.1c-0.2-1.7-0.5-3.4-0.8-5.1  c-0.3-1.7-0.8-3.3-1.3-5C31.5,27.3,32.7,27.2,34,27.2L34,27.2z M21.2,31.7c1.9-1.5,3.9-2.6,6.2-3.4c0.6,1.7,1,3.4,1.4,5.2  c0.4,1.8,0.6,3.6,0.8,5.4c-0.8,0.3-1.5,0.5-2.3,0.6c-0.8,0.1-1.5,0.2-2.3,0.2c-3,0-5.9-0.9-8.6-2.7C17.7,34.9,19.4,33.1,21.2,31.7z   M28.8,23.5c-0.1-0.4-0.3-0.8-0.5-1.2c3.1-1.4,6-3.3,8.8-5.6c0.8,1.2,1.4,2.5,1.9,3.9c0.5,1.4,0.7,2.8,0.7,4.3  c-1-0.2-1.9-0.4-2.8-0.6c-0.9-0.1-1.8-0.2-2.8-0.2c-0.8,0-1.5,0.1-2.3,0.1c-0.8,0.1-1.6,0.2-2.4,0.4C29.1,24.3,28.9,23.9,28.8,23.5z   M27,19.6c-1.6-3-3.5-5.9-5.8-8.7c1.2-0.4,2.5-0.5,3.8-0.5c1.9,0,3.8,0.4,5.5,1.1c1.7,0.7,3.3,1.7,4.7,3  C32.5,16.7,29.8,18.4,27,19.6L27,19.6z M18.4,22.3c-2,0.3-4,0.5-6,0.5h-2c0.4-2.4,1.3-4.5,2.7-6.4c1.4-1.9,3.1-3.4,5.1-4.4  c2.4,2.8,4.4,5.7,6.1,8.7C22.3,21.4,20.4,22,18.4,22.3z M18.1,8.8c-2.1,0.9-4,2.2-5.5,3.8C11,14.2,9.7,16,8.8,18.2  c-0.9,2.1-1.4,4.4-1.4,6.8c0,2.4,0.5,4.7,1.4,6.9c0.9,2.1,2.2,4,3.8,5.6c1.6,1.6,3.4,2.8,5.5,3.8c2.1,0.9,4.4,1.4,6.8,1.4  c2.4,0,4.7-0.5,6.8-1.4c2.1-0.9,4-2.2,5.6-3.8c1.6-1.6,2.9-3.4,3.8-5.6c0.9-2.1,1.4-4.4,1.4-6.9c0-2.4-0.5-4.7-1.4-6.8  c-0.9-2.1-2.2-4-3.8-5.6c-1.6-1.6-3.5-2.8-5.6-3.8c-2.1-0.9-4.4-1.4-6.8-1.4C22.5,7.5,20.2,7.9,18.1,8.8z M19.6,29.1  c-2.1,1.6-3.9,3.5-5.3,5.7c-1.2-1.2-2.1-2.6-2.8-4.2c-0.7-1.6-1-3.2-1.1-5c0.4,0,0.7,0,1.1,0.1c0.3,0,0.7,0.1,1,0.1  c2.2,0,4.4-0.2,6.6-0.6c2.2-0.4,4.3-1,6.5-1.8c0.1,0.3,0.2,0.7,0.4,1c0.1,0.4,0.3,0.7,0.5,1.1C23.9,26.4,21.6,27.6,19.6,29.1z"></path>
-        </svg></a>
-        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="icon-behance" x="0px" y="0px" viewBox="0 0 50 50" enable-background="new 0 0 50 50" xml:space="preserve" class=" iconic-injected-svg inject-me"><path d="M18.1,33.1c-0.6,0.3-1.5,0.5-2.7,0.5H9.8v-7h5.8c0.6,0,1.1,0,1.5,0.1c0.4,0,0.8,0.2,1.1,0.4c1.2,0.5,1.7,1.5,1.7,2.8  C19.8,31.5,19.3,32.6,18.1,33.1L18.1,33.1z M41.1,26.1h-8.5c0.2-1.2,0.7-2.2,1.3-2.9c0.7-0.7,1.7-1.1,3-1.1c1.1,0,2.1,0.3,2.9,1  C40.5,23.8,41,24.8,41.1,26.1L41.1,26.1z M3.7,11.8v26.5h11.9c0.7,0,1.4,0,2-0.1s1.2-0.1,1.8-0.2c0.6-0.2,1.1-0.4,1.6-0.6  c0.5-0.2,0.9-0.5,1.3-0.8c0.7-0.5,1.4-1.2,1.9-2c0.8-1.4,1.2-2.8,1.2-4.2s-0.4-2.7-1.1-3.9c-0.3-0.6-0.7-1-1.3-1.4  c-0.5-0.4-1.1-0.7-1.7-1c0.4-0.2,0.8-0.4,1.1-0.7s0.6-0.5,0.8-0.8c0.9-0.9,1.3-2.2,1.3-3.9c0-1.5-0.4-2.8-1.2-4  c-1.4-1.9-3.7-2.8-6.9-2.8H3.7z M27.5,28.1c0,3.5,0.9,6.1,2.8,7.7c2,1.5,4.2,2.2,6.7,2.2c1.5,0,2.9-0.2,4.1-0.7c1.2-0.4,2.2-1.1,3-2  c1.1-1.1,1.7-2.3,1.8-3.4h-5c-0.2,0.6-0.6,1-1,1.3c-0.8,0.6-1.7,0.9-2.8,0.9c-1.1,0-2-0.3-2.7-0.8c-0.6-0.4-1.1-0.9-1.4-1.5  c-0.4-0.7-0.5-1.5-0.5-2.4h13.9c0-0.8,0-1.5-0.1-2.1c0-0.6-0.1-1.1-0.2-1.6c-0.1-0.8-0.3-1.5-0.6-2.1c-0.3-0.6-0.6-1.3-0.9-1.9  c-0.4-0.7-0.9-1.2-1.5-1.7c-0.5-0.4-1.1-0.8-1.8-1.1C40,18.2,38.5,18,36.9,18c-2.8,0-5.1,0.9-6.8,2.6C28.3,22.4,27.5,24.9,27.5,28.1  L27.5,28.1z M31.5,12.9v2.7H42v-2.7H31.5z M17,22c-0.4,0.1-1,0.2-1.6,0.2H9.8v-5.8h5c0.7,0,1.3,0,1.7,0.1c0.5,0.1,0.9,0.2,1.4,0.3  c1,0.4,1.4,1.3,1.4,2.5c0,1.1-0.4,1.9-1.1,2.3C17.8,21.7,17.4,21.9,17,22z"></path>
-        </svg></a>
-        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="icon-instagram" x="0px" y="0px" viewBox="0 0 50 50" enable-background="new 0 0 50 50" xml:space="preserve" class=" iconic-injected-svg inject-me"><path fill-rule="evenodd" clip-rule="evenodd" d="M42.5,38.1v2.2c0,1.2-1,2.2-2.2,2.2h-2.2l0,0H11.9l0,0H9.7c-1.2,0-2.2-1-2.2-2.2  v-6.6l0,0V18.4l0,0V9.7c0-1.2,1-2.2,2.2-2.2h8.8l0,0h13.1l0,0h8.8c1.2,0,2.2,1,2.2,2.2v2.2c0,0,0,0,0,0V38.1  C42.5,38.1,42.5,38.1,42.5,38.1z M25,20.6c-4,0-4.4,4.4-4.4,4.4s-0.1,4.4,4.4,4.4s4.4-4.4,4.4-4.4S29,20.6,25,20.6z M38.1,11.9h-6.6  v6.6h6.6V11.9z M38.1,25L38.1,25v-2.2h-4.4l0,0h-0.3c0.2,0.7,0.3,1.4,0.3,2.2v0l0,0l0,0c0,4.8-3.9,8.8-8.8,8.8s-8.8-3.9-8.8-8.8  c0-0.8,0.1-1.5,0.3-2.2h-0.3l0,0h-4.4v15.3h4.4h2.2l0,0h13.1l0,0h6.6v-6.6l0,0V25z"></path>
-        </svg></a>
-      </div>
-    </section>
-
-  </section>
+        </div>
+    </div>
+    <div class="section item-3">
+        <div class="container">
+            <div class="img-3 hidden-xs">
+                <img src="./images/page-3/5(2).png" alt="">
+            </div>
+            <div class="bg-img hidden-xs hidden-sm">
+                <img src="./images/page-3/1(4).png" alt="">
+            </div>
+            <div class="sm-img fly hidden-xs hidden-sm">
+                <img src="./images/page-3/2(3).png" alt="">
+            </div>
 
 
-  <script src="js/jquery.1.11.1.js"></script>
-  <script>window.jQuery || document.write('<script src="js/libs/jquery-1.10.2.min.js"><\/script>');</script>
+            <div class="skill-introduce">
+                <div class="media">
+                    <div class="media-left media-top">
+                        <a href="#" class=''>
+                            <img class="media-object" src="./images/page-3/tv8.png" alt="">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">PC端</h4>
+                        <p>
+                             熟练使用 Html5 Css3 JavaScript，能够按设计师的要求合理完成PC端和移动端页面的布局<br>
+                            熟练使用原生js, 了解js面向对象原理，闭包以及原型结构，能够合理利用面向对象以及模块化开发,并且能适当完成框架封装。熟练使用 jQuery，并能完成相关动画效果。
+                            <br>熟练使用JQuery fullpage等插件,轮播图，瀑布流，全屏滚动等等常用功能的实现，bootstrap可以做出响应式布局。
+                            <br>了解Ajax交互原理，根据后台接口能够合理完成前后台交互，数据的增删改查
 
-  <script src="js/plugins.js"></script>
-  <script src="js/application.js"></script>
 
+
+                        </p>
+
+                    </div>
+                </div>
+                <div class="media ">
+                    <div class="media-left media-top">
+                        <a href="#" class=''>
+                            <img class="media-object" src="./images/page-3/apple6.png" alt="">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">手机端</h4>
+                          <p>熟练使用zepto.js swiper.js touch.js等移动框架进行移动页面的开发
+                            <br>掌握移动端布局规范，会基于流式布局以及 响应式布局 开发基于移动端的页面。
+                            <br>熟练使用Bootstrap 框架以及轻量级框架 zepto 的使用。
+                        </p>
+
+                    </div>
+                </div>
+                <div class="media ">
+                    <div class="media-left media-top">
+                        <a href="#" class=''>
+                            <img class="media-object" src="./images/page-3/baterry10.png" alt="">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">其他</h4>
+                         <p>对nodejs angularjs react有一定了解
+                            <br>熟悉git的工作原理会使用,npm、bower等相关指令
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skills hidden-xs">
+                <span class="subject-9">Zepto</span>
+                <span class="subject-2">Bootstrap</span>
+                <span class="subject-3">CANVAS</span>
+                <span class="subject-4">jQuery</span>
+                <span class="subject-10">Angular</span>
+                <span class="subject-5">移动端</span>
+                <span class="subject-6">CSS3</span>
+                <span class="subject-7">响应式</span>
+                <span class="subject-8">Nodejs</span>
+                <span class="subject-1">HTML5</span>
+            </div>
+        </div>
+    </div>
+    <div class="section item-4">
+        <!--第一屏-->
+        <div class="slide hidden-xs">
+            <div class="container" id='container-img'>
+                <div class="row">
+                    <div class="portfolio-items">
+                        <div class="col-sm-6 col-md-3 col-lg-3 web">
+                            <div class="portfolio-item">
+                                <div class="hover-bg">
+                                    <div class="hover-text">
+                                        <h4><a href='https://qp0910.github.io/huaban/huaban.html' target='_blank' title="画板">画板</a></h4>
+                                        <small>技术：html5+css3+js
+                                            <br>熟悉canvas技术</small>
+                                        <i class="fa fa-search"></i></div>
+                                    <img src="img/huaban.png" class="img-responsive" alt="画板">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-md-3 col-lg-3">
+                            <div class="portfolio-item">
+                                <div class="hover-bg">
+                                    <div class="hover-text">
+                                        <h4><a href="https://qp0910.github.io/wangyi6.0/index.html" target='_blank' title="网易6.0">网易6.0临摹</a></h4>
+                                        <small>技术：HTML+fullpage.js</small>
+                                    </div>
+                                    <img src="img/wangyi.png" class="img-responsive" alt="网易6.0"></div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-md-3 col-lg-3">
+                            <div class="portfolio-item">
+                                <div class="hover-bg">
+                                    <div class="hover-text">
+                                        <h4><a href="localhost:8888" target='_blank' title="新闻APP">新闻APP</a></h4>
+                                        <small>技术：nodejs搭建服务器以及html5和css实现布局</small>
+                                    </div>
+                                    <img src="img/news.png" class="img-responsive" alt="新闻APP"></div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-md-3 col-lg-3">
+                            <div class="portfolio-item">
+                                <div class="hover-bg">
+                                    <div class="hover-text">
+                                        <h4><a href='http://qiaopeng.duapp.com/' target='_blank' title="">公司内部app</a></h4>
+                                        <small>技术：angular.js和nodejs、ajax、mysql</small>
+                                    </div>
+                                    <img src="img/work.png" class="img-responsive" alt=""></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-3 col-lg-3">
+                            <div class="portfolio-item">
+                                <div class="hover-bg">
+                                    <div class="hover-text">
+                                        <h4><a href='https://qp0910.github.io/music/mobile/index.html' target='_blank' title="">音乐app</a></h4>
+                                        <small>技术：HTML+CSS+JQuery</small>
+                                    </div>
+                                    <img src="img/music.png" class="img-responsive" alt="音乐app">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-3 col-lg-3">
+                            <div class="portfolio-item">
+                                <div class="hover-bg">
+                                    <div class="hover-text">
+                                        <h4><a href="https://qp0910.github.io/room/fangzi.html" target='_blank' title="">房子</a></h4>
+                                        <small>技术：html5的3d技术</small>
+                                    </div>
+                                    <img src="img/room.png" class="img-responsive" alt="房子"></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-3 col-lg-3">
+                            <div class="portfolio-item">
+                                <div class="hover-bg">
+                                    <div class="hover-text">
+                                        <h4><a href="https://qp0910.github.io/baiduyuqing/baiduyq.html" target='_blank' title="百度舆情">百度舆情临摹</a></h4>
+                                        <small>技术：html+css+js，响应式布局</small>
+                                    </div>
+                                    <img src="img/bdyq.png" class="img-responsive" alt="百度舆情临摹"></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-3 col-lg-3">
+                            <div class="portfolio-item">
+
+                                <div class="hover-bg">
+                                    <div class="hover-text">
+                                        <h4><a href='https://qp0910.github.io/qp1109/' target='_blank' title="苹果首页临摹">苹果首页临摹</a></h4>
+                                        <small>技术：Bootstrap+JQuery</small>
+                                    </div>
+                                    <img src="img/apple.png" class="img-responsive" alt="苹果首页临摹">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--第二屏-->
+        <div class="slide">
+            <div class="rotator">
+                <div id="rot1">
+                    <img src="" width="800" height="300" class="bg" alt=""/>
+                    <div class="heading">
+                        <h1></h1>
+                    </div>
+                    <div class="description">
+                        <p style="font-size:20px"></p>
+                    </div>
+                </div>
+                <ul id="rotmenu">
+                    <li>
+                        <a href="#">Flappy Bird</a>
+                        <div style="display:none;">
+                            <div class="info_image">paoku.png</div>
+                            <div class="info_description">
+                                通过面向对象封装方法，利用canvas绘制。
+                                <br><a href="https://qp0910.github.io/games/game.html" target= _blank class="more">play</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#">cart</a>
+                        <div style="display:none;">
+                            <div class="info_image">shopping.png</div>
+                            <div class="info_image">Add to cart</div>
+                            <div class="info_description">
+                                电商的添加到购物车模型，符合大部分电商场景
+                                 <br><a href="https://qp0910.github.io/shopping/" target= _blank class="more">play</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#">Fall</a>
+                        <div style="display:none;">
+                            <div class="info_image">3.jpg</div>
+                            <div class="info_description">
+                               瀑布流布局，同时具备响应式，延迟加载等提高用户体验场景。
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+
+            </div>
+        </div>
+    </div>
+    <div class="section item-5" style="color:white">
+        <h1 style="text-align:center">Focus Me</h1>
+        <div class="word" style="text-align:center">
+        <p>
+            有责任，工作踏实，性格开朗乐观，积极上进。
+        </p>
+        </div>
+    <div class="word" style="text-align:center">
+        <p>
+           易和人相处，拥有良好的亲和力。<br>
+        </p>
+    </div>
+    <div class="word" style="text-align:center">
+        <p>
+            喜欢js，非常热爱编程，喜欢钻研新的技术，</br>具有很强的自学能力和良好的学习方法，喜欢研究各种新的框架。
+        </p>
+    </div>
+        <div class="top"></div>
+        <div class="foot"></div>
+    </div>
+</div>
 </body>
 </html>
+<script src="lib/jquery.min.js"></script>
+<script src="lib/jquery.fullPage.min.js"></script>
+<script src="lib/jquery.easing.1.3.js"></script>
+<script src="lib/jquery.isotope.js"></script>
+<script src="lib/bootstrap/js/bootstrap.js"></script>
+<script src="js/handler.js"></script>
+<script src="js/resumeEnter.js"></script>
